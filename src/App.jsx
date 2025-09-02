@@ -110,6 +110,7 @@ export default function New() {
       .then((res) => {
         setAllottedBeds(res.data.beds);
         setFilledBeds(res.data.total_allotted);
+        console.log("Allotted beds data:", res.data.beds);
       })
       .catch((err) => {
         console.error("Error fetching allotted beds:", err);
@@ -301,6 +302,7 @@ export default function New() {
 
   // Filter only occupied beds
   const occupiedBeds = allottedBeds.filter((b) => b.status === "occupied");
+  console.log("Occupied beds:", occupiedBeds);
 
   // Then filter by selected department
   const filteredBeds = filterDepartment
