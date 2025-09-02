@@ -31,6 +31,7 @@ export default function New() {
   const [bed, setBed] = useState("");
   const [bedData, setBedData] = useState({});
   const [allottedBeds, setAllottedBeds] = useState([]);
+  const [filledBeds, setFilledBeds] = useState([]);
   const [loading, setLoading] = useState(false);
   const [filterDepartment, setFilterDepartment] = useState("");
   const [shiftModalOpen, setShiftModalOpen] = useState(false);
@@ -107,7 +108,8 @@ export default function New() {
         },
       })
       .then((res) => {
-        setAllottedBeds(res.data);
+        setAllottedBeds(res.data.beds);
+        setFilledBeds(res.data.total_allotted);
       })
       .catch((err) => {
         console.error("Error fetching allotted beds:", err);
@@ -433,6 +435,8 @@ export default function New() {
               </MenuItem>
             ))}
           </TextField>
+                    <Typography>Total Beds Allotted: {filledBeds}</Typography>
+          
         </Grid>
       </Grid>
 
